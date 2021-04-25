@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customociauth
+  labels:
+    app: customociauth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: customociauth
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: customociauth
+    spec:
+      containers:
+      - image: javiermugueta/customociauth
+        env:
+        - name: tenancy
+          value: "ocid1.tenancy.oc1..aaaa...ua"
+        - name: user
+          value: "ocid1.user.oc1..aaaaa...zwa"
+        - name: region
+          value: "eu-frankfurt-1"
+        - name: fingerprint
+          value: "85...:d6"
+        - name: ppkfile
+          valueFrom:
+           configMapKeyRef:
+              name: myppk
+              key: myppk
+        - name: password
+          value: "-" # deprecated
+        name: customociauth
