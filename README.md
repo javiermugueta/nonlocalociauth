@@ -11,10 +11,10 @@ export ppkpasswd="-"
 
 go run nonlocalociauth.go 
 ```
-## container image build ans push
+## container image build and push
 ```
-docker build -t yourrepo/nonlocalociauth .
-docker push yourrepo/nonlocalociauth 
+docker build -t yourepo/nonlocalociauth .
+docker push yourepo/nonlocalociauth 
 ```
 
 ## create configmap for k8s
